@@ -1,0 +1,49 @@
+{
+  "project": "demo_teleop",
+  "rate_hz": 15,
+  "world": {
+    "name": "slave_base",
+    "axes": "X forward / Y left / Z up"
+  },
+  "master_base": {
+    "rpy_deg": [0, 0, -90],
+    "offset_m": [0.58, -0.88, -0.15],
+    "notes": "rpy_deg = R_WM (master base -> world)，offset_m 只用于可视化"
+  },
+  "master_tcp": {
+    "offset_m": [0, 0.0575, 0],
+    "offset_axis": "link6 +Y",
+    "source": "FK from joint angles"
+  },
+  "slave": {
+    "tool_name": "tool230",
+    "pose_units": { "pos": "mm", "rot": "deg" },
+    "busy_status": "busy",
+    "speed_limit": 150,
+    "rot_speed_limit": 90
+  },
+  "mapping": {
+    "k_pos": 1.0,
+    "k_rot": 1.0,
+    "vmax": 150,
+    "wmax": 90,
+    "linear_acc": 300,
+    "radius": 10,
+    "master_pos_deadband_mm": 0.5,
+    "master_rot_deadband_deg": 1.0,
+    "min_step_mm": 0.5,
+    "min_step_rot_deg": 0.5
+  },
+  "safety": {
+    "master_timeout_s": 0.3,
+    "limit_box": null,
+    "hardware_estop": true,
+    "notes": "limit_box=null 表示不做软限位；必须现场有硬件急停"
+  },
+  "gripper": {
+    "enabled": false,
+    "source": "keyboard",
+    "range": [0, 1]
+  },
+  "_example_of": "micro-master(6DOF) -> Han's Elfin3；换成你的实测值"
+}
