@@ -11,6 +11,14 @@ description: Scaffolds a heterogeneous master-slave teleoperation stack where on
 This skill is a **method + scaffold**, not a project manual. It produces a new repo; it does not
 require any particular vendor SDK.
 
+## 中文速览（TL;DR）
+
+1. **先访谈**：主手/从手接口、世界系、`R_WM`、TCP、busy 语义、单位（填 `templates/CONTRACT.md`）。
+2. **选虚拟 TCP 增量映射**：只传增量；锚定时冻结 `R_offset`；反馈不得覆盖目标。
+3. **生成代码**：`python scripts/scaffold.py --target ... --contract ...`，只改 `adapters.py`。
+4. **先自检再上真机**：`selftest.py` → `bridge.py --mock` → 单轴方向 → 六轴验收。
+5. **硬件急停是唯一安全边界**；软限位/工作空间预检不是必需品。
+
 ## When to use
 
 - One arm (master/leader, often back-drivable) should drive another arm (slave/follower).
